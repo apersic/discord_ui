@@ -1,0 +1,763 @@
+$greyServersSidebarBackground: #202225;
+$greyChannelsBackground: #2f3136;
+$greyChannelsToolbarBackground: #292b2f;
+$greyMainContentBackground: #36393f;
+$homeIconbackground: #7289da;
+$lineSeparatorColor: #2d2f32;
+$greenHighlight: #43b581;
+$greenHighlightDark: #3fa577;
+$greyText: #b9bbbe;
+$greySearchText: #727271;
+$verticalSeparatorColor: #42454a;
+$itemHoverColor: #3e4248;
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+@media screen and (max-width: 1500px) {
+  .activeUsers {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .addFriend {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .help {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .inbox {
+    display: none;
+  }
+  #toolbarSeparator{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .blocked {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .pending {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .all {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .newGroupDM {
+    display: none;
+  }
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.App{
+  height: 100vh;
+  background: white;
+  display: flex;
+  overflow: hidden;
+}
+
+.serverSidebar{
+  width: 77px;
+  height: 100vh;
+  background: $greyServersSidebarBackground;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  position: relative;
+  .lineSeparator{
+    width: 32px;
+    height: 2px;
+    margin: 2px;
+    background: $lineSeparatorColor;
+  }
+  .home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    margin: 10px;
+    background: $homeIconbackground;
+    border-radius: 35%;
+    cursor: pointer;
+    &:before{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 7px;
+      border-radius: 25%;
+      background: white;
+      height: 7px;
+      margin-left: -3px;
+    }
+    &.active{
+      &:before{
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 7px;
+        border-radius: 25%;
+        background: white;
+        height: 37px;
+        margin-left: -3px;
+      }
+    }
+  }
+  .servers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .serverIcon{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background: $greyMainContentBackground;
+      border-radius: 50%;
+      height: 47px;
+      width: 47px;
+      margin: 5px;
+      position: relative;
+      cursor: pointer;
+      &:before{
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 7px;
+        border-radius: 25%;
+        background: white;
+        height: 7px;
+        margin-left: -16px;
+      }
+      &.active{
+        &:before{
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 7px;
+          border-radius: 25%;
+          background: white;
+          height: 37px;
+          margin-left: -15px;
+        }
+      }
+      &:hover{
+        &:before{
+          transition: all 0.3s ease-in-out;
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 7px;
+          border-radius: 25%;
+          background: white;
+          height: 20px;
+          margin-left: -16px;
+        }
+      }
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: all 0.2s ease-in-out;
+        &:hover{
+          border-radius: 27%;
+        }
+      }
+    }
+  }
+  .serversConstant{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .serverIcon{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background: $greyMainContentBackground;
+      border-radius: 50%;
+      height: 47px;
+      width: 47px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      &:hover{
+        border-radius: 27%;
+        background: $greenHighlight;
+        path{
+          fill: white;
+        }
+      }
+      svg{
+        path{
+          fill: $greenHighlight;
+        }
+      }
+    }
+  }
+}
+
+.mainContentWrapper{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  .channelsSidebar{
+    position: relative;
+    background: $greyChannelsBackground;
+    width: 285px;
+    height: 100vh;
+    nav{
+      height: calc(100vh - 53px);
+      width: 100%;
+      .searchBar{
+        width: 100%;
+        height: 48px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid $greyServersSidebarBackground;
+        margin-bottom: 10px;
+        button{
+          width: 220px;
+          height: 28px;
+          border-radius: 5%;
+          border: none;
+          cursor: pointer;
+          background: $greyServersSidebarBackground;
+          color: $greySearchText;
+          text-align: left;
+          font-size: 0.8rem;
+          outline: none;
+        }
+      }
+      .channelScroller{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .scrollerButton{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: left;
+          padding: 20px;
+          border-radius: 5%;
+          width: 224px;
+          height: 42px;
+          margin-bottom: 2px;
+          cursor: pointer;
+          &:hover{
+            background: $greyMainContentBackground;
+          }
+          &.active{
+            background: $greyMainContentBackground;
+            .scrollerText{
+              color: white;
+              font-weight: bold;
+            }
+            .scrollerIcon{
+              svg{
+                path{
+                  fill: white;
+                }
+              }
+            }
+          }
+          .scrollerText{
+            color: $greyText;
+            margin-left: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .scrollerIcon{
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0;
+            svg{
+              object-fit: cover;
+              path{
+                fill: $greyText;
+              }
+            }
+          }
+        }
+        .dmButton{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          width: 100%;
+          height: 40px;
+          &:hover{
+            h2{
+              cursor: default;
+              color: $greyText;
+            }
+          }
+          h2{
+            font-size: 0.7rem;
+            color: $greySearchText;
+            margin-top: 15px;
+            margin-right: 2px;
+          }
+          button{
+            margin-top: 7px;
+            background: none;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            svg{
+              width: 16px;
+              height: 16px;
+              polygon{
+                fill: $greyText;
+              }
+            }
+          }
+        }
+        .privateChannel{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: left;
+          width: 224px;
+          height: 42px;
+          cursor: pointer;
+          &:hover{
+            background: $greyMainContentBackground;
+            .nameTag{
+              color: $greyText;
+            }
+            .remove{
+              visibility: visible;
+            }
+          }
+          .profilePic{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-left: 20px;
+            img{
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .nameTag{
+            color: $greySearchText;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            font-weight: bold;
+          }
+          .remove{
+            margin-left: auto;
+            margin-right: 5px;
+            visibility: hidden;
+            svg{
+              width: 16px;
+              height: 16px;
+              path{
+                fill: $greyText;
+              }
+            }
+          }
+        }
+      }
+    }
+    .channelsToolbar{
+      background: $greyChannelsToolbarBackground;
+      height: 100%;
+      max-height: 53px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .avatar{
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: 8px;
+        padding: 4px;
+        height: 32px;
+        width: 32px;
+        background: $greenHighlight;
+        &:hover{
+          background: $greenHighlightDark;
+        }
+        svg{
+          object-fit: cover;
+        }
+      }
+      .nametag{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 8px;
+        cursor: pointer;
+        .name{
+          font-size: 0.8rem;
+          color: white;
+          font-weight: bold;
+        }
+        .id{
+          font-size: 0.7rem;
+          color: $greyText;
+        }
+      }
+      .toolbarButtons{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        padding: 12px;
+        .toolbarButton{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          background: none;
+          padding: 0;
+          outline: none;
+          border: none;
+          cursor: pointer;
+          &:hover{
+            background: $greyMainContentBackground;
+          }
+          svg{
+            path{
+              fill: $greyText;
+            }
+          }
+        }
+      }
+    }
+  }
+  .mainContent{
+    height: 100vh;
+    width: 100%;
+    background: $greyMainContentBackground;
+    .mainContentToolbar{
+      width: 100%;
+      height: 48px;
+      border-bottom: 1px solid $greyServersSidebarBackground;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .icon{
+        margin-left: 15px;
+        svg{
+          path{
+            fill: $greySearchText;
+          }
+        }
+      }
+      span{
+        font-weight: bold;
+        margin-left: 5px;
+        color: white;
+        font-size: 0.9rem;
+        &:hover{
+          cursor: default;
+        }
+      }
+      .separator{
+        width: 1px;
+        height: 25px;
+        background: $verticalSeparatorColor;
+        margin-left: 15px;
+      }
+      .tabButtons{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: 5px;
+        a{
+          outline: none;
+          text-decoration: none;
+          &:visited{
+            text-decoration: none;
+          }
+        }
+        span{
+          cursor: pointer;
+          margin: 10px;
+          color: $greyText;
+          padding: 5px;
+          border-radius: 7%;
+          &:hover{
+            background: $itemHoverColor;
+            color: white;
+          }
+        }
+        .addFriend{
+          background: $greenHighlight;
+          color: white;
+          &:hover{
+            background: $greenHighlight;
+          }
+        }
+      }
+      .toolbarButtons{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: auto;
+        margin-right: 15px;
+        .newGroupDM{
+          cursor: pointer;
+          svg{
+            path{
+              fill: $greyText;
+            }
+          }
+          &:hover{
+            svg{
+              path{
+                fill: white;
+              }
+            }
+          }
+        }
+        .inbox{
+          cursor: pointer;
+          margin: 20px;
+          svg{
+            path{
+              fill: $greyText;
+            }
+          }
+          &:hover{
+            svg{
+              path{
+                fill: white;
+              }
+            }
+          }
+        }
+        .help{
+          cursor: pointer;
+          svg{
+            path{
+              fill: $greyText;
+            }
+          }
+          &:hover{
+            svg{
+              path{
+                fill: white;
+              }
+            }
+          }
+        }
+      }
+    }
+    .pageContent{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      .displayedPage{
+        width: 70%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .pageImageOnline{
+          width: 421px;
+          height: 218px;
+          background-image: url("https://discord.com/assets/a12ff54c4c5c03b41006fd96a4709c29.svg");
+          margin-bottom: 40px;
+        }
+        .pageImagePending{
+          width: 421px;
+          height: 218px;
+          background-image: url("https://discord.com/assets/b669713872b43ca42333264abf9c858e.svg");
+          margin-bottom: 40px;
+        }
+        .pageImageBlocked{
+          width: 421px;
+          height: 218px;
+          background-image: url("https://discord.com/assets/8c998f8fb62016fcfb4901e424ff378b.svg");
+          margin-bottom: 40px;
+        }
+        .pageText{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.9rem;
+          color: $greySearchText;
+        }
+        .allPage{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: left;
+          padding: 8px;
+          h2{
+            color: $greyText;
+            font-size: 0.7rem;
+            margin-left: 17px;
+          }
+          .lineSeparator{
+            width: 100%;
+            height: 1px;
+            margin-left: 17px;
+            background: $verticalSeparatorColor;
+          }
+          .friendsList{
+            width: 100%;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            .friend{
+              display: flex;
+              flex-direction: row;
+              cursor: pointer;
+              padding: 10px;
+              border-radius: 5%;
+              width: 100%;
+              height: 62px;
+              &:hover{
+                background: $itemHoverColor;
+              }
+              .profilePic{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                img{
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 50%;
+                  object-fit: cover;
+                }
+              }
+              .friendInfo{
+                margin-left: 10px;
+                .nameTag{
+                  color: white;
+                  font-size: 0.9rem;
+                  font-weight: bold;
+                }
+                .status{
+                  color: $greyText;
+                  font-size: 0.8rem;
+                }
+              }
+              .buttons{
+                display: flex;
+                flex-direction: row;
+                margin-left: auto;
+                .actionButton{
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 8px;
+                  width: 36px;
+                  height: 36px;
+                  margin-left: 10px;
+                  background: $greyChannelsBackground;
+                  border-radius: 50%;
+                  svg{
+                    path{
+                      width: 100%;
+                      height: 100%;
+                      fill: $greyText;
+                    }
+                  }
+                  &:hover{
+                    svg{
+                      path{
+                        fill: white;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .activeUsers{
+        width: 30%;
+        height: 100vh;
+        background: $greyChannelsBackground;
+        padding: 5px;
+        h2{
+          margin-left: 10px;
+          color: $greyText;
+          font-size: 0.7rem;
+        }
+        .activeContainer{
+          width: 354px;
+          background: $greyMainContentBackground;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 10px;
+          margin-left: 10px;
+          h2{
+            color: white;
+            font-size: 0.9rem;
+          }
+          span{
+            color: $greyText;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}
